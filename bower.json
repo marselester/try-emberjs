@@ -1,0 +1,9 @@
+{
+  "name": "Messaging",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "ember": "~1.5.1",
+    "ember-data": "~1.0.0-beta.8"
+  }
+}
