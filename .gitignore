@@ -1,4 +1,4 @@
 .DS_Store
 /app/vendor
+/compiled_app
 /node_modules
-/dev
