@@ -59,6 +59,12 @@
 
     <script type="text/x-handlebars" data-template-name="message">
       <p>{{text}}</p>
+      <h2>Comments</h2>
+      <ul>
+      {{#each comments}}
+        <li>{{text}}
+      {{/each}}
+      </ul>
     </script>
   </body>
 </html>
