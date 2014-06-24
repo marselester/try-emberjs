@@ -1,31 +1,36 @@
 App = Ember.Application.create
   LOG_TRANSITIONS: true
 
-App.MESSAGES = [
-  {
-    messageId: '1'
-    subject: 'statically typed language'
-    text: 'A language in which types are fixed at compile time.'
-  },
-  {
-    messageId: '2'
-    subject: 'dynamically typed language'
-    text: 'A language in which types are discovered at execution time'
-  }
-]
+App.ApplicationAdapter = DS.FixtureAdapter
 
 App.Router.map ->
   this.route 'about', path: '/aboutus'
   this.resource 'messages', ->
-    this.resource 'message', path: '/:messageId'
+    this.resource 'message', path: '/:message_id'
 
 App.MessagesRoute = Ember.Route.extend
   model: ->
-    App.MESSAGES
+    this.store.findAll 'message'
 
 App.MessageRoute = Ember.Route.extend
   model: (params) ->
-    App.MESSAGES.findBy 'messageId', params.messageId
+    this.store.find 'message', params.message_id
+
+App.Message = DS.Model.extend
+  subject: DS.attr 'string'
+  text: DS.attr 'string'
+App.Message.FIXTURES = [
+  {
+    id: 1
+    subject: 'statically typed language'
+    text: 'A language in which types are fixed at compile time.'
+  }
+  {
+    id: 2
+    subject: 'dynamically typed language'
+    text: 'A language in which types are discovered at execution time'
+  }
+]
 
 App.IndexController = Ember.Controller.extend
   messagesCount: 12
