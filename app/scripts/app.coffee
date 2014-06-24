@@ -8,6 +8,10 @@ App.Router.map ->
   this.resource 'messages', ->
     this.resource 'message', path: '/:message_id'
 
+App.IndexRoute = Ember.Route.extend
+  model: ->
+    this.store.findAll 'message'
+
 App.MessagesRoute = Ember.Route.extend
   model: ->
     this.store.findAll 'message'
@@ -51,8 +55,12 @@ App.Comment.FIXTURES = [
   }
 ]
 
-App.IndexController = Ember.Controller.extend
-  messagesCount: 12
+App.IndexController = Ember.ArrayController.extend
+  messagesCount: (->
+    # Look at "length" property at ArrayController.
+    # Then it will delegate to the model, and call "model.length".
+    this.get 'length'
+  ).property()
   time: (->
     (new Date()).toDateString()
   ).property()
