@@ -2,12 +2,63 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Messaging</title>
     <script src="vendor/jquery/dist/jquery.js"></script>
     <script src="vendor/handlebars/handlebars.js"></script>
     <script src="vendor/ember/ember.js"></script>
     <script src="vendor/ember-data/ember-data.js"></script>
+    <script src="scripts/app.js"></script>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
   </head>
   <body>
+    <script type="text/x-handlebars" data-template-name="application">
+      <nav class="navbar" role="navigation">
+        <div class="container">
+          {{#link-to 'index' class='btn'}}Home{{/link-to}}
+          {{#link-to 'messages' class='btn'}}Messages{{/link-to}}
+          {{#link-to 'about' class='btn'}}About{{/link-to}}
+        </div>
+      </nav>
+      <div class="container">
+        {{outlet}}
+      </div>
+      <footer class="container"></footer>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="index">
+      <h1>Welcome!</h1>
+      <p>There are {{messagesCount}} messages.</p>
+      <p>Rendered on {{time}}</p>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="about">
+      <h1>About Messaging</h1>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="messages">
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="list-group">
+            {{#each}}
+              {{#link-to 'message' this classNames="list-group-item"}}
+                {{subject}}
+              {{/link-to}}
+            {{/each}}
+          </div>
+        </div>
+        <div class="col-sm-9">
+          {{outlet}}
+        </div>
+      </div>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="messages/index">
+      <p class="text-muted">Choose a message</p>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="message">
+      <p>{{text}}</p>
+    </script>
   </body>
 </html>
