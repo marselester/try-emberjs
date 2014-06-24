@@ -60,7 +60,7 @@ App.IndexController = Ember.ArrayController.extend
     # Look at "length" property at ArrayController.
     # Then it will delegate to the model, and call "model.length".
     this.get 'length'
-  ).property()
+  ).property('length')
   time: (->
     (new Date()).toDateString()
   ).property()
