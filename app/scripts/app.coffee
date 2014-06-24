@@ -56,3 +56,6 @@ App.IndexController = Ember.Controller.extend
   time: (->
     (new Date()).toDateString()
   ).property()
+
+App.MessagesController = Ember.ArrayController.extend
+  sortProperties: ['subject']
