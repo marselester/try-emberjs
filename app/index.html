@@ -31,9 +31,7 @@
         <div class="col-sm-3">
           <div class="list-group">
             {{#each unreadMessages}}
-              {{#link-to 'message' this classNames='list-group-item'}}
-                {{subject}}
-              {{/link-to}}
+              {{message-details message=this}}
             {{/each}}
           </div>
           <p>
@@ -57,9 +55,7 @@
         <div class="col-sm-3">
           <div class="list-group">
             {{#each}}
-              {{#link-to 'message' this classNames='list-group-item'}}
-                {{subject}}
-              {{/link-to}}
+              {{message-details message=this}}
             {{/each}}
           </div>
         </div>
@@ -81,6 +77,12 @@
         <li>{{text}}</li>
       {{/each}}
       </ul>
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="components/message-details">
+      {{#link-to 'message' message classNames='list-group-item'}}
+        {{message.subject}}
+      {{/link-to}}
     </script>
   </body>
 </html>
