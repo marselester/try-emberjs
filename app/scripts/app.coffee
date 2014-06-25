@@ -23,18 +23,21 @@ App.MessageRoute = Ember.Route.extend
 App.Message = DS.Model.extend
   subject: DS.attr 'string'
   text: DS.attr 'string'
+  isUnread: DS.attr 'boolean'
   comments: DS.hasMany 'comment', async: true
 App.Message.FIXTURES = [
   {
     id: 1
     subject: 'statically typed language'
     text: 'A language in which types are fixed at compile time.'
+    isUnread: false
     comments: [100, 200]
   }
   {
     id: 2
     subject: 'dynamically typed language'
     text: 'A language in which types are discovered at execution time'
+    isUnread: true
   }
 ]
 
@@ -56,6 +59,9 @@ App.Comment.FIXTURES = [
 ]
 
 App.IndexController = Ember.ArrayController.extend
+  unreadMessages: (->
+    this.filterBy 'isUnread'
+  ).property('@each.isUnread')
   messagesCount: (->
     # Look at "length" property at ArrayController.
     # Then it will delegate to the model, and call "model.length".

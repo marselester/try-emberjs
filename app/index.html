@@ -27,9 +27,25 @@
     </script>
 
     <script type="text/x-handlebars" data-template-name="index">
-      <h1>Welcome!</h1>
-      <p>There are {{messagesCount}} messages.</p>
-      <p>Rendered on {{time}}</p>
+      <div class="row">
+        <div class="col-sm-3">
+          <div class="list-group">
+            {{#each unreadMessages}}
+              {{#link-to 'message' this classNames='list-group-item'}}
+                {{subject}}
+              {{/link-to}}
+            {{/each}}
+          </div>
+          <p>
+            {{#link-to 'messages' class='btn btn-success'}}
+              Read all {{messagesCount}} messages
+            {{/link-to}}
+          </p>
+        </div>
+        <div class="col-sm-9">
+          <p>Rendered on {{time}}</p>
+        </div>
+      </div>
     </script>
 
     <script type="text/x-handlebars" data-template-name="about">
@@ -41,7 +57,7 @@
         <div class="col-sm-3">
           <div class="list-group">
             {{#each}}
-              {{#link-to 'message' this classNames="list-group-item"}}
+              {{#link-to 'message' this classNames='list-group-item'}}
                 {{subject}}
               {{/link-to}}
             {{/each}}
@@ -62,7 +78,7 @@
       <h2>Comments</h2>
       <ul>
       {{#each comments}}
-        <li>{{text}}
+        <li>{{text}}</li>
       {{/each}}
       </ul>
     </script>
