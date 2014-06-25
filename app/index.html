@@ -82,6 +82,10 @@
     <script type="text/x-handlebars" data-template-name="components/message-details">
       {{#link-to 'message' message classNames='list-group-item'}}
         {{message.subject}}
+
+      {{#if hasComments}}
+        <span class="badge">{{commentsCount}}</span>
+      {{/if}}
       {{/link-to}}
     </script>
   </body>

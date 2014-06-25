@@ -73,3 +73,9 @@ App.IndexController = Ember.ArrayController.extend
 
 App.MessagesController = Ember.ArrayController.extend
   sortProperties: ['subject']
+
+App.MessageDetailsComponent = Ember.Component.extend
+  commentsCount: Ember.computed.alias 'message.comments.length'
+  hasComments: (->
+    this.get('commentsCount') > 0
+  ).property('commentsCount')
