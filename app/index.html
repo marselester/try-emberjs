@@ -71,10 +71,16 @@
 
     <script type="text/x-handlebars" data-template-name="message">
       <p>{{text}}</p>
+      {{partial '_feedback'}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="_feedback">
       <h2>Comments</h2>
       <ul>
       {{#each comments}}
         <li>{{text}}</li>
+      {{else}}
+        <li><p class="text-muted">There is no comments yet.</p></li>
       {{/each}}
       </ul>
     </script>
