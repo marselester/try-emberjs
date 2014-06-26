@@ -72,6 +72,14 @@
     <script type="text/x-handlebars" data-template-name="message">
       <p>{{text}}</p>
       {{partial '_feedback'}}
+
+      <h3>Write a comment</h3>
+      {{#if feedback_text}}
+        <p class="text-muted">{{feedback_text}}</p>
+      {{/if}}
+      {{textarea valueBinding='feedback_text'}}
+      <br>
+      <button {{action 'createComment'}} class='btn btn-primary'>Comment</button>
     </script>
 
     <script type="text/x-handlebars" data-template-name="_feedback">
