@@ -90,6 +90,7 @@ App.MessageController = Ember.ObjectController.extend
       this.get('feedback').set('postedAt', new Date())
       this.get('feedback').save().then (comment) ->
         controller.get('model.comments').addObject(comment)
+  isNotCommented: Ember.computed.alias 'feedback.isNew'
 
 App.MessageDetailsComponent = Ember.Component.extend
   commentsCount: Ember.computed.alias 'message.comments.length'

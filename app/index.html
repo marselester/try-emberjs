@@ -73,13 +73,15 @@
       <p>{{text}}</p>
       {{partial '_feedback'}}
 
-      <h3>Write a comment</h3>
-      {{#if feedback.text}}
-        <p class="text-muted">{{feedback.text}}</p>
+      {{#if isNotCommented}}
+        <h3>Write a comment</h3>
+        {{#if feedback.text}}
+          <p class="text-muted">{{feedback.text}}</p>
+        {{/if}}
+        {{textarea valueBinding='feedback.text'}}
+        <br>
+        <button {{action 'createComment'}} class='btn btn-primary'>Comment</button>
       {{/if}}
-      {{textarea valueBinding='feedback.text'}}
-      <br>
-      <button {{action 'createComment'}} class='btn btn-primary'>Comment</button>
     </script>
 
     <script type="text/x-handlebars" data-template-name="_feedback">
