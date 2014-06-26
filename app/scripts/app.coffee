@@ -75,19 +75,20 @@ App.MessagesController = Ember.ArrayController.extend
   sortProperties: ['subject']
 
 App.MessageController = Ember.ObjectController.extend
-  feedback_text: ''
+  feedback: (->
+    # Build a new Comment object for the Message object.
+    # Watch the model and create a new (blank) Comment every time
+    # the Message model changes.
+    this.store.createRecord 'comment',
+      message: this.get 'model'
+  ).property('model')
   actions:
     createComment: ->
-      # Build a new Comment object.
-      feedback = this.store.createRecord 'comment',
-        text: this.get 'feedback_text'
-        message: this.get 'model'
-        postedAt: new Date()
       # Need to be able to reference the controller in the save callback.
       controller = this
       # Save it in a storage.
-      feedback.save().then (comment) ->
-        controller.set('feedback_text', '')
+      this.get('feedback').set('postedAt', new Date())
+      this.get('feedback').save().then (comment) ->
         controller.get('model.comments').addObject(comment)
 
 App.MessageDetailsComponent = Ember.Component.extend

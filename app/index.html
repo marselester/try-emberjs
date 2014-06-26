@@ -74,10 +74,10 @@
       {{partial '_feedback'}}
 
       <h3>Write a comment</h3>
-      {{#if feedback_text}}
-        <p class="text-muted">{{feedback_text}}</p>
+      {{#if feedback.text}}
+        <p class="text-muted">{{feedback.text}}</p>
       {{/if}}
-      {{textarea valueBinding='feedback_text'}}
+      {{textarea valueBinding='feedback.text'}}
       <br>
       <button {{action 'createComment'}} class='btn btn-primary'>Comment</button>
     </script>
